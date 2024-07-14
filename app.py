@@ -9,12 +9,12 @@ app = Flask(__name__)
 @app.route("/api/v1/getDoctorDetails", methods=["POST"])
 def getDoctorDetails():
     try:
-        registrationNo = request.json.get("registrationNo")
+        registrationNumber = request.json.get("registrationNumber")
         registrationDate = request.json.get("registrationDate")
         session = requests.Session()
 
         initialPostData = {
-            "registrationNo": registrationNo
+            "registrationNo": registrationNumber
         }
 
         response = session.post(
@@ -65,7 +65,7 @@ def getDoctorDetails():
 def getDentistDetails():
     try:
         name = request.json.get("name")
-        regNo = request.json.get("regNo")
+        regNo = request.json.get("registrationNumber")
         state = request.json.get("state")
         session = requests.Session()
 
