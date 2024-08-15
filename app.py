@@ -3,8 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 import html
 import json
+from asgiref.wsgi import WsgiToAsgi
 
 app = Flask(__name__)
+asgi_app = WsgiToAsgi(app)
 
 @app.route("/api/v1/getDoctorDetails", methods=["POST"])
 def getDoctorDetails():
@@ -150,4 +152,5 @@ def getNurseDetails():
 
 
 if __name__ == "__main__":
-    app.run()
+    import uvicorn
+    uvicorn.run(asgi_app, host='0.0.0.0', port=5001)
